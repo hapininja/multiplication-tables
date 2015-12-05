@@ -67,6 +67,10 @@ prompt.get([{
    */
   async.series(methods, (err, questions) => {
 
+    if (err) {
+      return onErr(err);
+    }
+
     const wrongAnswers = questions.filter((answer) => !answer.right);
 
     console.log('Total Questions:' + questions.length);
