@@ -67,13 +67,16 @@ prompt.get([{
    */
   async.series(methods, (err, questions) => {
 
-    let wrongArray = questions.filter((answer) => !answer.right).map((o) =>  o.num1 + ' * ' + o.num2 + ' = ' + (o.num1 * o.num2) + ': You answered (' + o.answer + ')');
+    const wrongAnswers = questions.filter((answer) => !answer.right);
 
-    console.log('\nTotal Questions:' + questions.length + '\nPercentage Correct:' + Math.round(((questions.length - wrongArray.length) / questions.length) * 100) + '%');
+    console.log('Total Questions:' + questions.length);
+    console.log('Percentage Correct:' + Math.round(((questions.length - wrongAnswers.length) / questions.length) * 100) + '%');
 
-    if (wrongArray.length > 0) {
+    if (wrongAnswers.length > 0) {
       console.log('\nYour wrong answers');
-      wrongArray.forEach((o) => console.log(o));
+      wrongAnswers.forEach((o) => {
+        console.log(o.num1 + ' * ' + o.num2 + ' = ' + (o.num1 * o.num2) + ': You answered (' + o.answer + ')');
+      });
     }
 
   });
