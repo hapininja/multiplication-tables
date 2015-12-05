@@ -65,19 +65,12 @@ prompt.get([{
    * Then collect the callback data from each
    * and calculate metrics from total
    */
-  async.series(methods, (err, data) => {
+  async.series(methods, (err, questions) => {
 
-    const total = data.length;
+    let wrongArray = questions.filter((answer) => !answer.right).map((o) =>  o.num1 + ' * ' + o.num2 + ' = ' + (o.num1 * o.num2) + ': You answered (' + o.answer + ')');
 
-    let wrong = 0;
-    let wrongArray = [];
+    console.log('\nTotal Questions:' + questions.length + '\nPercentage Correct:' + Math.round(((questions.length - wrongArray.length) / questions.length) * 100) + '%');
 
-    data.filter((answer) => !answer.right).forEach((o) => {
-      wrong++;
-      wrongArray.push(o.num1 + ' * ' + o.num2 + ' = ' + (o.num1 * o.num2) + ': You answered (' + o.answer + ')');
-    });
-
-    console.log('\nTotal Questions:' + total + '\nPercentage Correct:' + Math.round(((total - wrong) / total) * 100) + '%');
     if (wrongArray.length > 0) {
       console.log('\nYour wrong answers');
       wrongArray.forEach((o) => console.log(o));
