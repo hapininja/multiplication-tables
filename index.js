@@ -1,11 +1,14 @@
-var prompt = require('prompt');
-var async = require('async');
-var clear = require('clear');
+'use strict';
 
-var methods = [];
+const prompt = require('prompt');
+const async = require('async');
+const clear = require('clear');
+
+let methods = [];
 
 clear();
 prompt.start();
+
 prompt.get([{
   name: 'questions',
   message: 'Must be a number',
@@ -16,26 +19,28 @@ prompt.get([{
   message: 'Must be a number',
   description: 'Highest number to use',
   required: true,
-}, ], function(err, result) {
+}, ], (err, result) => {
   if (err) {
     return onErr(err);
   }
 
   console.log('Time to test your times table:');
 
-  var questions = result.questions;
+  let questions = result.questions;
   while (questions > 0) {
 
     methods.push(function(callback) {
-      var num1 = Math.floor((Math.random() * result.highest) + 1);
-      var num2 = Math.floor((Math.random() * result.highest) + 1);
+
+      const num1 = Math.floor((Math.random() * result.highest) + 1);
+      const num2 = Math.floor((Math.random() * result.highest) + 1);
+
       prompt.get({
         name: 'answer',
         description: num1 + ' * ' + num2 + ' =',
         type: 'number',
         message: 'Must be a number',
         required: true,
-      }, function(err, res) {
+      }, (err, res) => {
         if (err) {
           return onErr(err);
         }
@@ -60,13 +65,14 @@ prompt.get([{
    * Then collect the callback data from each
    * and calculate metrics from total
    */
-  async.series(methods, function(err, data) {
+  async.series(methods, (err, data) => {
 
-    var total = data.length;
-    var wrong = 0;
-    var wrongArray = [];
+    const total = data.length;
 
-    data.filter((answer) => !answer.right).forEach(function(o) {
+    let wrong = 0;
+    let wrongArray = [];
+
+    data.filter((answer) => !answer.right).forEach((o) => {
       wrong++;
       wrongArray.push(o.num1 + ' * ' + o.num2 + ' = ' + (o.num1 * o.num2) + ': You answered (' + o.answer + ')');
     });
