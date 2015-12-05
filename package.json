@@ -1,0 +1,24 @@
+{
+  "name": "hapi-multiplication",
+  "version": "1.0.0",
+  "description": "Quick implementation of multiplication test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hapininja/multiplication-tables.git"
+  },
+  "author": "Alberto Vasquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hapininja/multiplication-tables/issues"
+  },
+  "homepage": "https://github.com/hapininja/multiplication-tables#readme",
+  "dependencies": {
+    "async": "^1.5.0",
+    "clear": "0.0.1",
+    "prompt": "^0.2.14"
+  }
+}

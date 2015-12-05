@@ -1,2 +1,4 @@
 # multiplication-tables
-# multiplication-tables
+
+### Instructions
+`node index.js`
