@@ -77,6 +77,8 @@ prompt.get([{
       wrongAnswers.forEach((o) => {
         console.log(o.num1 + ' * ' + o.num2 + ' = ' + (o.num1 * o.num2) + ': You answered (' + o.answer + ')');
       });
+    } else {
+      console.log('\nGreat work.  Keep it up!');
     }
 
   });
